@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pomodoro 番茄钟</title>
+    <meta
+      name="description"
+      content="一个可以部署到 GitHub Pages 的简洁现代番茄钟（Pomodoro）应用。纯前端实现，无需后端。"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header">
+        <h1 class="app-title">Pomodoro 番茄钟</h1>
+        <p class="app-subtitle">专注 25 分钟，休息 5 分钟</p>
+      </header>
+
+      <main class="app-main">
+        <section class="timer-card" aria-label="番茄钟计时器">
+          <div class="mode-toggle" role="tablist" aria-label="计时模式">
+            <button
+              id="focus-tab"
+              class="mode-button mode-button--active"
+              data-mode="focus"
+              role="tab"
+              aria-selected="true"
+            >
+              专注
+            </button>
+            <button
+              id="break-tab"
+              class="mode-button"
+              data-mode="break"
+              role="tab"
+              aria-selected="false"
+            >
+              休息
+            </button>
+          </div>
+
+          <div class="timer-display" aria-live="polite">
+            <div id="time-remaining" class="time-remaining">25:00</div>
+            <div id="status-text" class="status-text">准备开始专注</div>
+          </div>
+
+          <div class="progress-bar" aria-hidden="true">
+            <div id="progress-fill" class="progress-fill"></div>
+          </div>
+
+          <div class="controls">
+            <button id="start-button" class="primary-button">开始</button>
+            <button id="pause-button" class="ghost-button" disabled>暂停</button>
+            <button id="reset-button" class="ghost-button">重置</button>
+          </div>
+
+          <p class="hint-text">
+            建议：每完成 4 轮专注后，站起来活动一下，喝点水。
+          </p>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <span class="footer-text">纯前端 · 可直接部署到 GitHub Pages</span>
+      </footer>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
+

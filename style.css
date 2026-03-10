@@ -1,0 +1,268 @@
+/* 
+ * Pomodoro 番茄钟样式
+ * 设计目标：简洁、现代、响应式，适合直接部署到 GitHub Pages。
+ */
+
+:root {
+  --bg: #050816;
+  --bg-elevated: rgba(15, 23, 42, 0.9);
+  --bg-elevated-soft: rgba(15, 23, 42, 0.8);
+  --accent: #f97316;
+  --accent-soft: rgba(249, 115, 22, 0.2);
+  --accent-strong: #fb923c;
+  --accent-muted: #fed7aa;
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --border-subtle: rgba(148, 163, 184, 0.3);
+  --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.9);
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+  --transition-fast: 180ms ease-out;
+  --transition-normal: 220ms ease-out;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top left, #0f172a 0, #020617 38%, #020617 100%);
+  color: var(--text-primary);
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.app {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.app-title {
+  margin: 0 0 6px;
+  font-size: 28px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.app-subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.app-main {
+  display: flex;
+  justify-content: center;
+}
+
+.timer-card {
+  width: 100%;
+  padding: 22px 22px 20px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(
+      145deg,
+      rgba(15, 23, 42, 0.98),
+      rgba(15, 23, 42, 0.92)
+    ),
+    radial-gradient(circle at top right, rgba(249, 115, 22, 0.12), transparent 55%);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  backdrop-filter: blur(22px);
+}
+
+.mode-toggle {
+  display: inline-flex;
+  padding: 4px;
+  margin-bottom: 18px;
+  border-radius: var(--radius-pill);
+  background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 1));
+  border: 1px solid rgba(30, 64, 175, 0.6);
+}
+
+.mode-button {
+  position: relative;
+  border: none;
+  border-radius: 999px;
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  cursor: pointer;
+  transition: color var(--transition-fast), transform 80ms ease-out;
+}
+
+.mode-button:hover {
+  color: var(--text-primary);
+}
+
+.mode-button:active {
+  transform: scale(0.97);
+}
+
+.mode-button--active {
+  color: #0b1120;
+}
+
+.mode-button--active::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at top, var(--accent-strong), var(--accent));
+  box-shadow: 0 10px 26px rgba(249, 115, 22, 0.65);
+  z-index: -1;
+}
+
+.timer-display {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.time-remaining {
+  font-size: 52px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.status-text {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.progress-bar {
+  position: relative;
+  height: 7px;
+  border-radius: 999px;
+  background: radial-gradient(circle at top, rgba(30, 64, 175, 0.6), rgba(15, 23, 42, 1));
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+
+.progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+  box-shadow: 0 0 18px rgba(249, 115, 22, 0.75);
+  transition: width 1s linear;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+button {
+  font-family: inherit;
+}
+
+.primary-button,
+.ghost-button {
+  flex: 1;
+  padding: 9px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: background var(--transition-normal), color var(--transition-normal),
+    transform 80ms ease-out, box-shadow var(--transition-normal), opacity 120ms ease-out;
+}
+
+.primary-button {
+  background: radial-gradient(circle at top, var(--accent-strong), var(--accent));
+  color: #0b1120;
+  box-shadow: 0 12px 32px rgba(249, 115, 22, 0.65);
+}
+
+.primary-button:hover:not(:disabled) {
+  background: radial-gradient(circle at top, #fed7aa, var(--accent-strong));
+  box-shadow: 0 16px 40px rgba(249, 115, 22, 0.8);
+  transform: translateY(-1px);
+}
+
+.primary-button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 10px 26px rgba(249, 115, 22, 0.55);
+}
+
+.ghost-button {
+  background: rgba(15, 23, 42, 0.95);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+}
+
+.ghost-button:hover:not(:disabled) {
+  color: var(--text-primary);
+  border-color: rgba(148, 163, 184, 0.9);
+  background: radial-gradient(circle at top, rgba(31, 41, 55, 0.5), rgba(15, 23, 42, 1));
+}
+
+.ghost-button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+button:disabled {
+  cursor: default;
+  opacity: 0.45;
+  box-shadow: none;
+}
+
+.hint-text {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.app-footer {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.footer-text {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* 小屏幕适配 */
+@media (max-width: 480px) {
+  body {
+    padding: 14px;
+  }
+
+  .timer-card {
+    padding: 18px 16px 16px;
+  }
+
+  .time-remaining {
+    font-size: 44px;
+  }
+}
+
